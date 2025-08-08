@@ -1,0 +1,13 @@
+@use "variables" as v;
+
+@use "vuetify/settings" with (
+  //Icon
+  $icon-sizes: v.$icon-sizes,
+  
+  //Tooltip
+  $tooltip-background-color: v.$tooltip-background-color,
+  $tooltip-border-radius: v.$tooltip-border-radius,
+  $tooltip-font-size: v.$tooltip-font-size,
+  $tooltip-padding: v.$tooltip-padding,
+  $tooltip-text-color: v.$tooltip-text-color
+);

@@ -1,0 +1,78 @@
+// // Elevated Button Styles
+// .v-btn.v-btn--variant-elevated {
+//   &:not(.v-btn--icon) {
+//     &.bg-primary:hover {
+//       background-color: rgb(var(--v-theme-primary-hover)) !important;
+//     }
+
+//     &.bg-login:hover {
+//       background-color: rgb(var(--v-theme-login-hover)) !important;
+//     }
+
+//     &.v-btn--disabled {
+//       background-color: rgb(var(--v-theme-disabled-bg)) !important;
+//       color: rgb(var(--v-theme-disabled-text)) !important;
+//     }
+
+//     &.bg-error:hover {
+//       background-color: rgb(var(--v-theme-error-hover)) !important;
+//     }
+//   }
+
+//   // Loading shown over button
+//   .v-btn__loader > .v-progress-circular {
+//     color: rgb(var(--v-theme-lightThemeText)) !important;
+//   }
+// }
+
+// // Text Button Styles
+// .v-btn.v-btn--variant-text:not(.v-btn--disabled, .v-tab).text-primary {
+//   &:hover {
+//     & .v-btn__content {
+//       color: rgb(var(--v-theme-primary-hover)) !important;
+//       text-decoration: underline !important;
+//       text-underline-offset: 4px !important;
+//     }
+//     & .v-icon {
+//       color: rgb(var(--v-theme-primary-hover)) !important;
+//     }
+//   }
+// }
+
+// // Outlined Button Styles
+// .v-btn.v-btn--variant-outlined:not(.v-btn--disabled) {
+//   border-color: rgb(var(--v-theme-primary-border)) !important;
+
+//   &.text-primary:hover {
+//     color: rgb(var(--v-theme-primary-hover)) !important;
+//     border-color: rgb(var(--v-theme-primary-hover)) !important;
+//   }
+
+//   &.text-error:hover {
+//     color: rgb(var(--v-theme-error-hover)) !important;
+//     border-color: rgb(var(--v-theme-error-hover)) !important;
+//   }
+// }
+
+// // Plain Button Styles
+// .v-btn.v-btn--variant-plain:not(.v-btn--disabled) {
+//   border-color: rgb(var(--v-theme-primary)) !important;
+// }
+
+// // Setting icon multiplier to 1 when used with button to map the perfect size.
+// .v-btn .v-icon {
+//   --v-icon-size-multiplier: 1;
+// }
+
+// // rotate button
+// .rotate {
+//   animation: spin 2s linear infinite;
+// }
+// @keyframes spin {
+//   0% {
+//     transform: rotate(0deg);
+//   }
+//   100% {
+//     transform: rotate(360deg);
+//   }
+// }

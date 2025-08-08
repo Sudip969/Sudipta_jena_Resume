@@ -1,0 +1,15 @@
+@use './settings';
+
+@use 'vuetify';
+
+
+@use './components/index.scss';
+// // All extra styles that will be loaded in the app
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local('sans-serif'), url('assets/fonts/Open_Sans/OpenSans-Regular.ttf') format('truetype');
+}
+
