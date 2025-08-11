@@ -9,7 +9,7 @@
           <v-col col="3">
             <p-chip size="large">
               <v-icon
-                class="text-orange"
+                class="text-primary"
                 :icon="detail.icon"
                 :dynamic-icon="true"
               ></v-icon>
@@ -20,7 +20,7 @@
             <span class="text-subtitle-2"
               >{{ detail.value }}
               <NuxtLink v-if="detail.link" :to="detail.link" target="_blank">
-                <v-icon icon="open_in_new" size="small" color="orange" />
+                <v-icon icon="open_in_new" size="small" color="primary" />
               </NuxtLink>
             </span>
           </v-col>

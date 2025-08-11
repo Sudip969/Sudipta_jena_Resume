@@ -22,6 +22,6 @@ export default {
 <style scoped>
 /* This will change slider color only for selected tab */
 .v-tab--selected :deep(.v-tab__slider) {
-  background-color: orange !important; /* Change to your color */
+  background-color: primary !important; /* Change to your color */
 }
 </style>
