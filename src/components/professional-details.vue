@@ -11,21 +11,21 @@
       <v-card-title class="font-weight-bold text-h5 pl-0">
         {{ tabs[activeTab].title }}
       </v-card-title>
-      <v-divider thickness="3px" length="36px" color="orange" opacity="1" />
-      <about v-if="activeTab === 0" />
-      <resume v-if="activeTab === 1" />
+      <v-divider thickness="3px" length="36px" color="primary" opacity="1" />
+      <about-page v-if="activeTab === 0" />
+      <resume-page v-if="activeTab === 1" />
     </v-card>
   </v-container>
 </template>
 <script>
 import PTabs from "../common/p-tabs.vue";
-import About from "./about.vue";
-import Resume from "./resume.vue";
+import AboutPage from "./about-page.vue";
+import ResumePage from "./experience-page.vue";
 export default {
   components: {
     PTabs,
-    About,
-    Resume,
+    AboutPage,
+    ResumePage,
   },
   data() {
     return {
@@ -35,7 +35,7 @@ export default {
           title: "About",
         },
         {
-          title: "Resume",
+          title: "Experience",
         },
       ],
     };

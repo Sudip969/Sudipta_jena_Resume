@@ -58,7 +58,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
             background: '#121212',
 
-            primary: '#90A4F4',            // lighter version of #1E49E2 for visibility
+            primary: '#FFA726',
             'on-primary': '#000000',
             'primary-hover': '#5472F5',    // lighter than hover color in light mode
             'primary-border': '#3F51B5',
@@ -72,7 +72,6 @@ export default defineNuxtPlugin((nuxtApp) => {
             warning: '#FFD54F',
 
             yellow: '#FFEB3B',
-            orange: '#FFA726'
           },
 
         },

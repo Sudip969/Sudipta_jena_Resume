@@ -3,22 +3,22 @@
     <v-card-text class="pl-0" v-html="experienceDetails"> </v-card-text>
     <v-row>
       <v-col>
-        <v-card variant="tonal">
+        <v-card variant="tonal" class="rounded-lg">
           <div class="px-4 py-4">
-            <v-row v-for="(techStack, label) in techStacks">
+            <v-row v-for="(techStack, label, index) in techStacks">
               <v-col cols="3" class="text-h6 font-weight-bold pl-4"
                 >{{ label }}
               </v-col>
-              <v-col cols="9" class="d-flex">
+              <v-col cols="2" class="d-flex" v-for="(element, i) in techStack">
                 <v-img
                   :src="`/images/${element.icon}`"
                   contain
                   height="36"
-                  v-for="(element, i) in techStack"
                   :key="i"
                   v-tooltip:bottom="element.title"
                 ></v-img>
               </v-col>
+              <v-divider v-if="index !== Object.keys(techStacks).length - 1" />
             </v-row>
           </div>
         </v-card>
@@ -28,6 +28,7 @@
 </template>
 <script>
 export default {
+  name: "about-page.vue",
   data() {
     return {
       experienceDetails:
