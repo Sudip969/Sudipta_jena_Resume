@@ -7,7 +7,7 @@ import * as directives from 'vuetify/directives'
 // import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 // import '../src/style/main.scss';
-// import '@/styles/main.scss';
+import '@/src/styles/main.scss';
 import '@fortawesome/fontawesome-free/css/all.css'; // Ensure your project is capable of handling css files
 
 
@@ -46,6 +46,7 @@ export default defineNuxtPlugin((nuxtApp) => {
             info: '#00B8F5',
             // success: '#6ac4a1',
             warning: '#EEB82A',
+            tooltipText: '#1E1E1E'
           },
         },
         dark: {
@@ -72,6 +73,7 @@ export default defineNuxtPlugin((nuxtApp) => {
             warning: '#FFD54F',
 
             yellow: '#FFEB3B',
+            tooltipText: '#1E1E1E'
           },
 
         },

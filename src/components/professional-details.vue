@@ -1,8 +1,19 @@
 <template>
   <v-row>
-    <v-col offset="4">
+    <v-col cols="1"> </v-col>
+    <v-col offset="3">
       <v-card class="rounded-bs-xl" variant="tonal">
-        <p-tabs v-model="activeTab" :tabs="tabs" />
+        <p-tabs v-model="activeTab" :tabs="tabs">
+          <template #afterTabs>
+            <v-icon
+              size="small"
+              :icon="themeIcon"
+              @click="toggleTheme"
+              :color="themeColor"
+              class="ma-4"
+            />
+          </template>
+        </p-tabs>
       </v-card>
     </v-col>
   </v-row>
@@ -13,19 +24,21 @@
       </v-card-title>
       <v-divider thickness="3px" length="36px" color="primary" opacity="1" />
       <about-page v-if="activeTab === 0" />
-      <resume-page v-if="activeTab === 1" />
+      <experience-page v-if="activeTab === 1" />
     </v-card>
   </v-container>
 </template>
 <script>
 import PTabs from "../common/p-tabs.vue";
 import AboutPage from "./about-page.vue";
-import ResumePage from "./experience-page.vue";
+import ExperiencePage from "./experience-page.vue";
+import { useTheme } from "vuetify";
+
 export default {
   components: {
     PTabs,
     AboutPage,
-    ResumePage,
+    ExperiencePage,
   },
   data() {
     return {
@@ -38,18 +51,30 @@ export default {
           title: "Experience",
         },
       ],
+      theme: useTheme(),
     };
+  },
+  computed: {
+    themeColor() {
+      return this.theme.global.name === "dark" ? "white" : "orange";
+    },
+    themeIcon() {
+      return this.theme.global.name === "dark" ? "moon_stars--filled" : "sunny";
+    },
   },
   methods: {
     toggleTab(tab) {
       this.activeTab;
       console.log(tab);
     },
+    toggleTheme() {
+      this.theme.change(this.theme.global.name === "dark" ? "light" : "dark");
+    },
   },
 };
 </script>
 <style scoped>
 ::v-deep(.v-tab__slider) {
-  height: 0px !important; /* or your custom size */
+  height: 0px !important;
 }
 </style>

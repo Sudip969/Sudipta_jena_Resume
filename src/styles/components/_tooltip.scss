@@ -1,0 +1,6 @@
+.v-tooltip {
+  z-index: 2147483647 !important; // Highest z-index for tooltips
+  .v-overlay__content {
+    border-radius: 8px !important;
+  }
+}

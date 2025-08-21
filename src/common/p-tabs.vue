@@ -1,6 +1,6 @@
 <template>
   <v-row no-gutters>
-    <v-col>
+    <v-col class="d-flex">
       <v-tabs :model-value="modelValue" v-bind="$attrs">
         <v-tab v-for="(tab, index) in tabs" :key="index" :value="index">
           <span class="text-capitalize">
@@ -9,6 +9,9 @@
         </v-tab>
       </v-tabs>
     </v-col>
+    <div>
+      <slot name="afterTabs" />
+    </div>
   </v-row>
 </template>
 <script>
