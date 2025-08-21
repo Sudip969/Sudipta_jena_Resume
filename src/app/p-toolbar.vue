@@ -9,36 +9,6 @@
       </v-col>
     </v-row>
   </v-container>
-  <!-- <v-toolbar
-    class="text-white"
-    image="https://cdn.vuetifyjs.com/images/backgrounds/vbanner.jpg"
-  >
-    <v-avatar class="ml-2 text-white">
-      <v-icon icon="account_circle" />
-    </v-avatar>
-    <v-toolbar-title
-      text="Sudipta Jena | Software Development Engineer"
-    ></v-toolbar-title>
-    <v-toolbar-items class="mr-2">
-      <p-toolbar-item icon-name="info" title="About">About</p-toolbar-item>
-      <p-toolbar-item icon-name="work_history" title="Work"
-        >Work</p-toolbar-item
-      >
-      <p-toolbar-item icon-name="contacts" title="Contact"
-        >Contact</p-toolbar-item
-      >
-      <p-toolbar-item icon-name="assignment" title="Resume">
-        Resume</p-toolbar-item
-      >
-      <v-icon
-        class="mt-5"
-        size="small"
-        :icon="themeIcon"
-        :color="themeColor"
-        @click="toggleTheme"
-      />
-    </v-toolbar-items>
-  </v-toolbar> -->
 </template>
 <script>
 import PToolbarItem from "./p-toolbar-item.vue";

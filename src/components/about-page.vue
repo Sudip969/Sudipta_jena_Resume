@@ -47,7 +47,7 @@ export default {
           { icon: "MySQL.svg", title: "MySql" },
           { icon: "MicrosoftSQLServer.svg", title: "Sql Server" },
           { icon: "PostgresSQL.svg", title: "Postgres Sql" },
-          { icon: "MongoDB.svg", title: "MongoBD" },
+          { icon: "MongoDB.svg", title: "MongoDB" },
         ],
         Testing: [
           { icon: "Cypress.svg", title: "Cypress" },

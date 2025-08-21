@@ -1,8 +1,11 @@
 <template>
   <v-container>
     <div>
-      <v-card-title class="pb-0">Sudipta Jena</v-card-title>
-      <v-card-subtitle class="">Full Stack Developer </v-card-subtitle>
+      <span class="d-flex flex-column align-center mb-4">
+        <profile-photo></profile-photo>
+        <v-card-title class="pb-0">Sudipta Jena </v-card-title>
+        <v-card-subtitle class="">Full Stack Developer </v-card-subtitle>
+      </span>
       <v-divider />
       <v-card-item>
         <v-row v-for="(detail, index) in details" :key="index">
@@ -32,8 +35,12 @@
 
 <script>
 import PChip from "../common/p-chip.vue";
+import ProfilePhoto from "./profile-photo.vue";
+
 export default {
+  name: "personal-details.vue",
   components: {
+    ProfilePhoto,
     PChip,
   },
   data() {

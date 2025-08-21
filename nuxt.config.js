@@ -1,14 +1,15 @@
 // nuxt.config.ts
-import vuetify from "vite-plugin-vuetify";
+import { resolve } from 'path';
+
+import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
-  // alias: {
-  //   '@test': resolve(__dirname, 'unitTestUtils'),
-  //   '/src': resolve(__dirname, 'src'),
-  //   '/components': resolve(__dirname, 'src/common/components'),
-  //   '/assets': resolve(__dirname, 'assets'),
-  //   '/plugins': resolve(__dirname, 'plugins')
-  // },
+  alias: {
+    '/src': resolve(__dirname, 'src'),
+    '/components': resolve(__dirname, 'src/common/components'),
+    '/assets': resolve(__dirname, 'assets'),
+    '/plugins': resolve(__dirname, 'plugins')
+  },
   ssr: false, // or false depending on your use case
   css: ["vuetify/styles", "@mdi/font/css/materialdesignicons.css"],
   build: {
@@ -29,22 +30,16 @@ export default defineNuxtConfig({
     }
   },
   vite: {
-    // define: {
-    //   'process.env.DEBUG': false,
-    // },
     vue: {
       template: {
-        transformAssetUrls: {
-          base: null,
-          includeAbsolute: false,
-        },
+        transformAssetUrls
       },
     },
     plugins: [vuetify({
       autoImport: true,
-      // styles: {
-      //   configFile: 'styles/settings.scss', // 👈 this must be a relative path
-      // },
+      styles: {
+        configFile: 'src/styles/settings.scss', // 👈 this must be a relative path
+      },
     })],
   },
 });
