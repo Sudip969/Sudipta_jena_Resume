@@ -18,6 +18,7 @@ export default defineNuxtConfig({
   },
   app: {
     baseURL: '/Sudipta_jena_Resume/',
+    buildAssetsDir: 'nuxt',
     head: {
       link: [
         {
