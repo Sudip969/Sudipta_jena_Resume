@@ -7,25 +7,45 @@
         <v-card-subtitle class="">Full Stack Developer </v-card-subtitle>
       </span>
       <v-divider />
-      <v-card-item>
-        <v-row v-for="(detail, index) in details" :key="index">
-          <v-col col="3">
-            <p-chip size="large">
-              <v-icon
-                class="text-primary"
-                :icon="detail.icon"
-                :dynamic-icon="true"
-              ></v-icon>
-            </p-chip>
-          </v-col>
-          <v-col cols="9" class="d-flex flex-column">
-            <span class="pb-0 text-body-2 text-grey">{{ detail.title }}</span>
-            <span class="text-subtitle-2"
-              >{{ detail.value }}
-              <NuxtLink v-if="detail.link" :to="detail.link" target="_blank">
-                <v-icon icon="open_in_new" size="small" color="primary" />
-              </NuxtLink>
-            </span>
+      <v-card-item class="px-0">
+        <v-row>
+          <v-col
+            v-for="(detail, index) in details"
+            :key="index"
+            cols="12"
+            sm="6"
+            md="12"
+            lg="12"
+          >
+            <v-row>
+              <!-- Icon -->
+              <v-col cols="3">
+                <p-chip size="large">
+                  <v-icon
+                    class="text-primary"
+                    :icon="detail.icon"
+                    :dynamic-icon="true"
+                  />
+                </p-chip>
+              </v-col>
+
+              <!-- Text -->
+              <v-col cols="9" class="d-flex flex-column">
+                <span class="pb-0 text-body-2 text-grey">
+                  {{ detail.title }}
+                </span>
+                <span class="text-subtitle-2">
+                  {{ detail.value }}
+                  <NuxtLink
+                    v-if="detail.link"
+                    :to="detail.link"
+                    target="_blank"
+                  >
+                    <v-icon icon="open_in_new" size="small" color="primary" />
+                  </NuxtLink>
+                </span>
+              </v-col>
+            </v-row>
           </v-col>
         </v-row>
       </v-card-item>

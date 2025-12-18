@@ -5,8 +5,9 @@ import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
 
 export default defineNuxtConfig({
   alias: {
-    '/src': resolve(__dirname, 'src'),
-    '/components': resolve(__dirname, 'src/common/components'),
+    src: "/<rootDir>/src",
+    // '/src': resolve(__dirname, 'src'),
+    '/components': resolve(__dirname, '/src/components'),
     '/assets': resolve(__dirname, 'assets'),
     '/plugins': resolve(__dirname, 'plugins')
   },
@@ -42,4 +43,14 @@ export default defineNuxtConfig({
       },
     })],
   },
+  nitro: {
+    routeRules: {
+      '/weather/**': {
+        proxy: 'http://localhost:5050/weather/**',
+        secure: false,
+        changeOrigin: true
+      },
+      compressPublicAssets: true
+    }
+  }
 });

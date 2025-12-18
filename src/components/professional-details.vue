@@ -25,6 +25,7 @@
       <v-divider thickness="3px" length="36px" color="primary" opacity="1" />
       <about-page v-if="activeTab === 0" />
       <experience-page v-if="activeTab === 1" />
+      <project-page v-if="activeTab === 2" />
     </v-card>
   </v-container>
 </template>
@@ -32,6 +33,7 @@
 import PTabs from "../common/p-tabs.vue";
 import AboutPage from "./about-page.vue";
 import ExperiencePage from "./experience-page.vue";
+import ProjectPage from "./project-page.vue";
 import { useTheme } from "vuetify";
 
 export default {
@@ -39,6 +41,7 @@ export default {
     PTabs,
     AboutPage,
     ExperiencePage,
+    ProjectPage,
   },
   data() {
     return {
@@ -50,6 +53,7 @@ export default {
         {
           title: "Experience",
         },
+        { title: "Projects" },
       ],
       theme: useTheme(),
     };
@@ -63,10 +67,6 @@ export default {
     },
   },
   methods: {
-    toggleTab(tab) {
-      this.activeTab;
-      console.log(tab);
-    },
     toggleTheme() {
       this.theme.change(this.theme.global.name === "dark" ? "light" : "dark");
     },

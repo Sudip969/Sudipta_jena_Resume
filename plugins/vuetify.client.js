@@ -107,7 +107,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   nuxtApp.provide('toggleTheme', toggleTheme)
 
-  // Optional: auto-detect system theme
+  //auto-detect system theme
   if (import.meta.client) {
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
     vuetify.theme.change(prefersDark ? 'dark' : 'light')

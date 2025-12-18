@@ -1,26 +1,13 @@
 <template>
-  <v-container>
-    <v-row class="">
-      <v-col cols="4">
-        <v-card class="rounded-shaped"> <personal-details /></v-card>
-      </v-col>
-      <v-col cols="8">
-        <v-card> <professional-details /></v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+  <v-card> <professional-details /></v-card>
 </template>
 <script>
-import PToolbarItem from "./p-toolbar-item.vue";
 import { useTheme } from "vuetify";
-import PersonalDetails from "../components/personal-details.vue";
 import ProfessionalDetails from "../components/professional-details.vue";
 
 export default {
   name: "p-toolbar",
   components: {
-    PToolbarItem,
-    PersonalDetails,
     ProfessionalDetails,
   },
   data() {

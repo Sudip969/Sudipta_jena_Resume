@@ -1,46 +1,58 @@
 <template>
-  <v-row v-for="(experience, companyName) in experiences" class="mt-1">
-    <v-col cols="1">
-      <v-img src="/images/logo.png" height="36" class="bg-white"></v-img>
-    </v-col>
-    <v-col cols="11" class="d-flex flex-column">
-      <span class="text-h6">{{ companyName }} </span
-      ><span class="text-subtitle-2">{{
-        experienceDuration(companyName)
-      }}</span>
-      <span class="text-subtitle-2 text-grey">{{ experience.location }}</span>
-      <v-timeline align="start" side="end" truncate-line="start" class="mt-2">
-        <v-timeline-item
-          v-for="(position, i) in experience.positions"
-          :key="i"
-          dot-color="primary"
-          size="small"
-        >
-          <template #opposite>
-            <span class="text-subtitle-2">
-              {{
-                `${position.startDate} - ${
-                  position.endDate ? position.endDate : "Present"
-                }`
-              }}
-            </span>
-          </template>
-          <v-card flat>
-            <v-card-title class="py-0">
-              {{ position.name }}
-            </v-card-title>
-            <v-card-subtitle>
-              {{ positionDuration(position.startDate, position.endDate) }}
-            </v-card-subtitle>
-            <v-card-text>
-              <span v-html="position.contribution"></span>
-            </v-card-text>
-          </v-card>
-        </v-timeline-item>
-      </v-timeline>
+  <v-row class="mt-1">
+    <v-col
+      v-for="(experience, companyName) in experiences"
+      :key="companyName"
+      cols="12"
+      sm="6"
+    >
+      <v-row>
+        <!-- Logo -->
+        <v-col cols="2" sm="2">
+          <v-img src="/images/logo.png" height="36" class="bg-white"></v-img>
+        </v-col>
+
+        <!-- Content -->
+        <v-col cols="12" sm="10" class="d-flex flex-column">
+          <span class="text-h6">{{ companyName }}</span>
+          <span class="text-subtitle-2">
+            {{ experienceDuration(companyName) }}
+          </span>
+          <span class="text-subtitle-2 text-grey">
+            {{ experience.location }}
+          </span>
+
+          <v-timeline
+            align="start"
+            side="end"
+            truncate-line="start"
+            class="mt-2"
+          >
+            <v-timeline-item
+              v-for="(position, i) in experience.positions"
+              :key="i"
+              dot-color="primary"
+              size="small"
+            >
+              <v-card flat>
+                <v-card-title class="py-0">
+                  {{ position.name }}
+                </v-card-title>
+                <v-card-subtitle>
+                  {{ positionDuration(position.startDate, position.endDate) }}
+                </v-card-subtitle>
+                <v-card-text>
+                  <span v-html="position.contribution"></span>
+                </v-card-text>
+              </v-card>
+            </v-timeline-item>
+          </v-timeline>
+        </v-col>
+      </v-row>
     </v-col>
   </v-row>
 </template>
+
 <script>
 export default {
   name: "experience-page.vue",

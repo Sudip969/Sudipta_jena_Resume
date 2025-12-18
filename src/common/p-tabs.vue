@@ -2,7 +2,12 @@
   <v-row no-gutters>
     <v-col class="d-flex">
       <v-tabs :model-value="modelValue" v-bind="$attrs">
-        <v-tab v-for="(tab, index) in tabs" :key="index" :value="index">
+        <v-tab
+          v-for="(tab, index) in tabs"
+          :key="index"
+          :value="index"
+          v-bind="tab.to ? { to: tab.to } : {}"
+        >
           <span class="text-capitalize">
             {{ tab.title }}
           </span>
