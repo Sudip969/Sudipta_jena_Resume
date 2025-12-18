@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     transpile: ["vuetify"],
   },
   app: {
+    baseURL: '/Sudipta_jena_Resume/',
     head: {
       link: [
         {
@@ -44,6 +45,7 @@ export default defineNuxtConfig({
     })],
   },
   nitro: {
+    preset: 'github-pages',
     routeRules: {
       '/weather/**': {
         proxy: 'http://localhost:5050/weather/**',
