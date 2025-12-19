@@ -1,7 +1,8 @@
 <template>
-  <v-row no-gutters>
-    <v-col class="d-flex">
-      <v-tabs :model-value="modelValue" v-bind="$attrs">
+  <v-row no-gutters align="center">
+    <!-- Tabs -->
+    <v-col cols="8" sm="10" class="d-flex">
+      <v-tabs :model-value="modelValue" show-arrows v-bind="$attrs">
         <v-tab
           v-for="(tab, index) in tabs"
           :key="index"
@@ -14,11 +15,14 @@
         </v-tab>
       </v-tabs>
     </v-col>
-    <div>
+
+    <!-- Icon -->
+    <v-col cols="1" sm="2" class="d-flex justify-end">
       <slot name="afterTabs" />
-    </div>
+    </v-col>
   </v-row>
 </template>
+
 <script>
 export default {
   props: {

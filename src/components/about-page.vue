@@ -6,17 +6,18 @@
         <v-card variant="tonal" class="rounded-lg">
           <div class="px-4 py-4">
             <v-row v-for="(techStack, label, index) in techStacks">
-              <v-col cols="3" class="text-h6 font-weight-bold pl-4"
+              <v-col   cols="12" sm="4" md="3" class="text-h6 font-weight-bold pl-4"
                 >{{ label }}
               </v-col>
               <v-col cols="2" class="d-flex" v-for="(element, i) in techStack">
-                <v-img
+                <img
                   :src="`/images/${element.icon}`"
                   contain
                   height="36"
                   :key="i"
                   v-tooltip:bottom="element.title"
-                ></v-img>
+                  :alt="element.title"
+                ></img>
               </v-col>
               <v-divider v-if="index !== Object.keys(techStacks).length - 1" />
             </v-row>

@@ -66,6 +66,7 @@ export default {
           to: "/experience",
         },
         { title: "Projects", to: "/projects" },
+        { title: "Awards", to: "/awards" },
       ],
       theme: useTheme(),
       route: useRoute(),
