@@ -4,7 +4,7 @@
       v-for="(experience, companyName) in experiences"
       :key="companyName"
       cols="12"
-      sm="6"
+      sm="12"
     >
       <v-row>
         <!-- Logo -->
@@ -22,19 +22,14 @@
             {{ experience.location }}
           </span>
 
-          <v-timeline
-            align="start"
-            side="end"
-            truncate-line="start"
-            class="mt-2"
-          >
+          <v-timeline align="start" side="end" class="mt-2">
             <v-timeline-item
               v-for="(position, i) in experience.positions"
               :key="i"
               dot-color="primary"
               size="small"
             >
-              <v-card flat>
+              <v-card-item>
                 <v-card-title class="py-0">
                   {{ position.name }}
                 </v-card-title>
@@ -44,7 +39,7 @@
                 <v-card-text>
                   <span v-html="position.contribution"></span>
                 </v-card-text>
-              </v-card>
+              </v-card-item>
             </v-timeline-item>
           </v-timeline>
         </v-col>

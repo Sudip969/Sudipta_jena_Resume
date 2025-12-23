@@ -7,7 +7,7 @@
             <v-row>
               <v-col cols="2"> <v-img src="/images/logo.png"></v-img></v-col>
               <v-col cols="10">
-                <v-card-title> Test Project </v-card-title>
+                <v-card-title> Test Project(Not working) </v-card-title>
                 <v-card-text>
                   Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                   Impedit veritatis soluta hic recusandae minima beatae dolor

@@ -1,1 +1,0 @@
-import{_ as e,g as p,s as _,o as d}from"./QqSgdjeQ.js";const $={name:"awards-page.vue"};function f(a,s,o,n,r,t){return"Award"}const m=e($,[["render",f]]),u={components:{AwardsPage:m}};function i(a,s,o,n,r,t){const c=_("awards-page");return d(),p(c)}const g=e(u,[["render",i]]);export{g as default};

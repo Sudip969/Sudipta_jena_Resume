@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "getReady": "rm -rf .nuxt .output docs && npm run generate && mkdir docs && cp -r .output/public/* docs/"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.0.0",

@@ -1,1 +1,0 @@
-import{_ as a,c as r,o as s,b as o,I as n,w as l,d as c,aa as d,F as f}from"./QqSgdjeQ.js";const p={};function u(t,e){return s(),r(f,null,[o(d,null,{default:l(()=>e[0]||(e[0]=[c(" Weather App Layout ")])),_:1}),n(t.$slots,"default")],64)}const m=a(p,[["render",u]]);export{m as default};
