@@ -1,59 +1,86 @@
 <template>
-  <v-row class="mt-1">
-    <v-col
-      v-for="(experience, companyName) in experiences"
-      :key="companyName"
-      cols="12"
-      sm="12"
-    >
-      <v-row>
-        <!-- Logo -->
-        <v-col cols="2" sm="2">
-          <v-img src="/images/logo.png" height="36" class="bg-white"></v-img>
-        </v-col>
+  <v-container class="py-8">
+    <!-- Iterate over Companies -->
+    <v-row v-for="(experience, companyName) in experiences" :key="companyName" class="mb-12">
+      <v-col cols="12">
+        <v-card variant="elevated" elevation="2" class="pa-6 rounded-xl h-100 biography-card">
+          <div class="d-flex flex-column flex-sm-row align-center align-sm-start mb-6">
+            <v-card
+              class="d-flex align-center justify-center bg-surface-variant rounded-lg border pa-2 mr-sm-6 mb-4 mb-sm-0"
+              elevation="0"
+              width="80"
+              height="80"
+            >
+              <v-img 
+                :src="experience.companyLogo || '/images/logo.png'" 
+                style="object-fit: contain; max-height: 60px; max-width: 60px;"
+              ></v-img>
+            </v-card>
+            
+            <div class="text-center text-sm-left flex-grow-1 pt-1">
+              <h3 class="text-h4 font-weight-bold text-primary">{{ companyName }}</h3>
+              <div class="d-flex flex-column flex-sm-row align-center align-sm-start mt-3 gap-2">
+                <v-chip color="info" size="small" variant="flat" class="font-weight-bold mr-0 mr-sm-3 mb-2 mb-sm-0">
+                  <v-icon start size="small">schedule</v-icon>
+                  Total: {{ experienceDuration(companyName) }}
+                </v-chip>
+                <span class="text-subtitle-1 text-grey-darken-1 d-flex align-center font-weight-medium">
+                  <v-icon start size="small" class="mr-1">location_on</v-icon>
+                  {{ experience.location }}
+                </span>
+              </div>
+            </div>
+          </div>
 
-        <!-- Content -->
-        <v-col cols="12" sm="10" class="d-flex flex-column">
-          <span class="text-h6">{{ companyName }}</span>
-          <span class="text-subtitle-2">
-            {{ experienceDuration(companyName) }}
-          </span>
-          <span class="text-subtitle-2 text-grey">
-            {{ experience.location }}
-          </span>
+          <v-divider class="mb-8"></v-divider>
 
-          <v-timeline align="start" side="end" class="mt-2">
+          <!-- Timeline -->
+          <v-timeline align="start" density="compact" side="end" class="experience-timeline px-sm-6">
             <v-timeline-item
               v-for="(position, i) in experience.positions"
               :key="i"
               dot-color="primary"
               size="small"
+              fill-dot
             >
-              <v-card-item>
-                <v-card-title class="py-0">
-                  {{ position.name }}
-                </v-card-title>
-                <v-card-subtitle>
-                  {{ positionDuration(position.startDate, position.endDate) }}
-                </v-card-subtitle>
-                <v-card-text>
-                  <span v-html="position.contribution"></span>
-                </v-card-text>
-              </v-card-item>
+              <v-card variant="tonal" class="rounded-lg pa-5 mb-6">
+                <div class="d-flex flex-column flex-md-row justify-space-between align-md-center mb-4">
+                  <h4 class="text-h6 font-weight-bold mb-2 mb-md-0 text-primary">{{ position.name }}</h4>
+                  <v-chip size="small" color="primary" variant="outlined" class="font-weight-bold ml-0 ml-md-4 align-self-start align-self-md-center">
+                    {{ positionDuration(position.startDate, position.endDate) }}
+                  </v-chip>
+                </div>
+                
+                <div class="text-body-1 contribution-content" v-html="position.contribution"></div>
+              </v-card>
             </v-timeline-item>
           </v-timeline>
-        </v-col>
-      </v-row>
-    </v-col>
-  </v-row>
+
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
 export default {
-  name: "experience-page.vue",
+  name: "ExperiencePage",
   data() {
     return {
       experiences: {
+        "Revolution India": {
+          location: "Hyderabad, Telangana",
+          companyLogo: "/images/revolutionLogo.png",
+          positions: [
+            {
+              name: "Software Development Engineer - I / SDE-I",
+              startDate: "2026-02",
+              endDate: null,
+              contribution:
+                "<ul><li>Driving ongoing migration from Vue 2 to Vue 3 Using Composition API, improving maintainability, performance, and scalability.</li><li>Identifying and resolving critical frontend bugs, ensuring system stability and enhanced user experience.</li><li>Used AI tools to boost frontend efficiency by 30%, automate repetitive tasks, and accelerate development.</li></ul>",
+            },
+          ],
+        },
         Argusoft: {
           location: "Gandhinagar, Gujurat",
           companyLogo: "/images/logo.png",
@@ -121,3 +148,23 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+/* Scoped Styling for Experience Contribution Bullets */
+::v-deep(.contribution-content ul) {
+  padding-left: 20px;
+  margin-top: 8px;
+}
+
+::v-deep(.contribution-content li) {
+  margin-bottom: 12px;
+  line-height: 1.8;
+  color: var(--v-theme-on-surface);
+  list-style-type: disc;
+}
+
+/* Color the bullet points properly to match the primary theme */
+::v-deep(.contribution-content li::marker) {
+  color: rgb(var(--v-theme-primary));
+}
+</style>
