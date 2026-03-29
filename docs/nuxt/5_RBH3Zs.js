@@ -1,0 +1,1 @@
+import{_ as a,c as n,o,b as r,P as s,w as l,d as c,E as d,F as u}from"./D_IugEqm.js";const f={};function _(t,e){return o(),n(u,null,[r(d,null,{default:l(()=>e[0]||(e[0]=[c(" LP Layout ")])),_:1}),s(t.$slots,"default")],64)}const m=a(f,[["render",_]]);export{m as default};
