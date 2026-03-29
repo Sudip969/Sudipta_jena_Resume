@@ -42,7 +42,7 @@
             <v-btn
               variant="elevated"
               color="primary"
-              href="https://github.com/sjena/POCs"
+              href="https://github.com/Sudip969/AI-job-tracker/tree/master"
               target="_blank"
               prepend-icon="device_hub"
               class="text-none flex-grow-1"

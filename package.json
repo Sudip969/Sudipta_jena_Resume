@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "getReady": "rm -rf .nuxt .output docs && npm run generate && mkdir docs && cp -r .output/public/* docs/"
+    "getReady": "powershell -Command \"Remove-Item -Recurse -Force .nuxt, .output, docs -ErrorAction SilentlyContinue\" && npm run generate && mkdir docs && xcopy .output\\public\\* docs\\ /E /I /H /Y"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.0.0",
