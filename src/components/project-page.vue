@@ -64,7 +64,7 @@
           ></v-img>
 
           <v-card-item class="pt-4">
-            <v-card-title class="text-h5 font-weight-bold mb-1">Live Weather Dashboard</v-card-title>
+            <v-card-title class="text-h5 font-weight-bold mb-1">Weather Dashboard</v-card-title>
             <v-card-subtitle class="text-info font-weight-medium">Data Visualization API</v-card-subtitle>
           </v-card-item>
 
@@ -97,7 +97,7 @@
       </v-col>
 
       <!-- PROJECT 3: Portfolio Resume -->
-      <!-- <v-col cols="12" md="6" lg="4">
+      <v-col cols="12" md="6" lg="4">
         <v-card class="project-card h-100 d-flex flex-column" elevation="3">
           <v-img 
             src="https://images.unsplash.com/photo-1618477388954-7852f32655ec?auto=format&fit=crop&w=800&q=80" 
@@ -107,7 +107,7 @@
           ></v-img>
 
           <v-card-item class="pt-4">
-            <v-card-title class="text-h5 font-weight-bold mb-1">Interactive Digital Resume</v-card-title>
+            <v-card-title class="text-h5 font-weight-bold mb-1">Digital Resume</v-card-title>
             <v-card-subtitle class="text-success font-weight-medium">Personal Web Identity</v-card-subtitle>
           </v-card-item>
 
@@ -127,17 +127,17 @@
 
           <v-card-actions class="pa-4 bg-surface-variant">
             <v-btn
-              variant="outlined"
+              variant="elevated"
               color="success"
               disabled
-              prepend-icon="mdi-check-circle-outline"
+              prepend-icon="check_circle"
               class="text-none flex-grow-1 border-opacity-50"
             >
               You Are Here
             </v-btn>
           </v-card-actions>
         </v-card>
-      </v-col> -->
+      </v-col>
 
     </v-row>
   </v-container>

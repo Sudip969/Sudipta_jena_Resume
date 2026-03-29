@@ -54,7 +54,7 @@
                           height="64"
                         >
                           <img
-                            :src="`/images/${element.icon}`"
+                            :src="`${config.app.baseURL}images/${element.icon}`"
                             style="object-fit: contain; max-height: 40px; max-width: 40px;"
                             :alt="element.title"
                           />
@@ -78,6 +78,7 @@ export default {
   name: "AboutPage",
   data() {
     return {
+      config: useRuntimeConfig(),
       experienceDetails:"<p>I am a <strong>Full Stack Developer</strong> focused on building scalable web applications and delivering clean, high-performance user experiences.</p><p>With over 3 years of professional experience, I specialize in frontend development using <strong>Vue.js (Vue 2 & Vue 3), Nuxt.js</strong>, and have hands-on experience with <strong>React</strong>. On the backend, I work with <strong>Node.js</strong> and <strong>RESTful APIs</strong>, along with databases such as <strong>SQL Server</strong>, <strong>PostgreSQL</strong>, <strong>MySQL</strong>, and <strong>MongoDB</strong>.</p><p>Currently, I am working as a <strong>Software Development Engineer - I</strong> at <strong>Revolution India</strong>, where I am leading the migration of legacy applications from <strong>Vue 2 to Vue 3</strong> using the <strong>Composition API</strong>, improving performance, maintainability, and scalability. I also leverage <strong>AI-assisted tools</strong> to enhance development efficiency and reduce repetitive tasks.</p><p>Previously, at <strong>ArguSoft India</strong>, I contributed to migrating multiple application modules, building and integrating <strong>RESTful APIs</strong>, and improving system reliability through <strong>backend validations</strong> and <strong>automation</strong>. I also implemented automated testing using tools like <strong>Cypress</strong>, <strong>Jest</strong>, <strong>Mocha</strong>, and <strong>Vitest</strong>, significantly reducing <strong>manual QA</strong> efforts.</p><p>I am experienced in <strong>Agile environments</strong>, <strong>CI/CD pipelines</strong>, and collaborating with cross-functional teams to deliver robust solutions. Beyond development, I actively explore performance <strong>optimization</strong> techniques, <strong>modern web technologies</strong>, and problem-solving using <strong>data structures</strong> and <strong>algorithms</strong>.</p>",
       techStacks: {
         Frontend: [

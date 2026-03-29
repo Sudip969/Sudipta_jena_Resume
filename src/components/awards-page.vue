@@ -7,7 +7,7 @@
           
           <!-- Safely corrected Nuxt 3 static /images/ path -->
           <v-img 
-            src="/images/Sudipta employee of the month.png" 
+            :src="`${config.app.baseURL}images/Sudipta employee of the month.png`" 
             class="bg-grey-lighten-2 border-b"
           >
             <!-- Fallback for image loading state -->
@@ -53,6 +53,11 @@
 <script>
 export default {
   name: "AwardsPage",
+  data() {
+    return {
+      config: useRuntimeConfig(),
+    };
+  },
 };
 </script>
 

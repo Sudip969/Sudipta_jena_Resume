@@ -12,7 +12,7 @@
               height="80"
             >
               <v-img 
-                :src="experience.companyLogo || '/images/logo.png'" 
+                :src="config.app.baseURL + (experience.companyLogo || 'images/logo.png').replace(/^\//, '')" 
                 style="object-fit: contain; max-height: 60px; max-width: 60px;"
               ></v-img>
             </v-card>
@@ -67,6 +67,7 @@ export default {
   name: "ExperiencePage",
   data() {
     return {
+      config: useRuntimeConfig(),
       experiences: {
         "Revolution India": {
           location: "Hyderabad, Telangana",
