@@ -18,13 +18,13 @@
             </v-card>
             
             <div class="text-center text-sm-left flex-grow-1 pt-1">
-              <h3 class="text-h4 font-weight-bold text-primary">{{ companyName }}</h3>
+              <h3 class="text-h5 font-weight-bold text-primary">{{ companyName }}</h3>
               <div class="d-flex flex-column flex-sm-row align-center align-sm-start mt-3 gap-2">
                 <v-chip color="info" size="small" variant="flat" class="font-weight-bold mr-0 mr-sm-3 mb-2 mb-sm-0">
                   <v-icon start size="small">schedule</v-icon>
                   Total: {{ experienceDuration(companyName) }}
                 </v-chip>
-                <span class="text-subtitle-1 text-grey-darken-1 d-flex align-center font-weight-medium">
+                <span class="text-caption text-grey-darken-1 d-flex align-center font-weight-medium">
                   <v-icon start size="small" class="mr-1">location_on</v-icon>
                   {{ experience.location }}
                 </span>
@@ -45,13 +45,13 @@
             >
               <v-card variant="tonal" class="rounded-lg pa-5 mb-6">
                 <div class="d-flex flex-column flex-md-row justify-space-between align-md-center mb-4">
-                  <h4 class="text-h6 font-weight-bold mb-2 mb-md-0 text-primary">{{ position.name }}</h4>
+                  <h4 class="text-subtitle-1 font-weight-bold mb-2 mb-md-0 text-primary">{{ position.name }}</h4>
                   <v-chip size="small" color="primary" variant="outlined" class="font-weight-bold ml-0 ml-md-4 align-self-start align-self-md-center">
                     {{ positionDuration(position.startDate, position.endDate) }}
                   </v-chip>
                 </div>
                 
-                <div class="text-body-1 contribution-content" v-html="position.contribution"></div>
+                <div class="text-body-2 contribution-content" v-html="position.contribution"></div>
               </v-card>
             </v-timeline-item>
           </v-timeline>
@@ -89,7 +89,7 @@ export default {
             {
               name: "Programmer Analyst - Full stack developer",
               startDate: "2023-04",
-              endDate: null,
+              endDate: "2026-01",
               contribution:
                 "<ul><li>Migrated legacy Vue 2 apps to Vue 3 (Composition API) for better performance & maintainability.</li><li>Developed dynamic Nuxt.js frontends, improving UX and load speed.</li><li>Built & integrated REST APIs using Node.js + Squel ORM over SQL Server.</li><li>Implemented unit testing with Vitest/Jest, boosting UI reliability.</li><li>Created backend tests with Mocha, raising coverage by 85%.</li><li>Automated workflows with Cypress, reducing manual testing by 60%.</li><li>Enhanced deployment efficiency with automation strategies recognized by PM & dev team.</li><li>Maintained data integrity via validation & audit trails; active in Agile ceremonies.</li>",
             },
@@ -158,8 +158,8 @@ export default {
 }
 
 ::v-deep(.contribution-content li) {
-  margin-bottom: 12px;
-  line-height: 1.8;
+  margin-bottom: 8px;
+  line-height: 1.6;
   color: var(--v-theme-on-surface);
   list-style-type: disc;
 }

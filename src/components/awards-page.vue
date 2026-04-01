@@ -19,14 +19,14 @@
           </v-img>
 
           <v-card-item class="pt-5">
-            <v-card-title class="text-h5 font-weight-bold mb-1">Employee of the Month</v-card-title>
+            <v-card-title class="text-subtitle-1 font-weight-bold mb-1">Employee of the Month</v-card-title>
             <v-card-subtitle class="text-primary font-weight-medium d-flex align-center">
               <v-icon start size="small">emoji_events</v-icon>
               Argusoft India
             </v-card-subtitle>
           </v-card-item>
 
-          <v-card-text class="flex-grow-1 text-body-1 mt-2">
+          <v-card-text class="flex-grow-1 text-body-2 mt-2">
             Recognized for exceptional commitment to engineering excellence, rapid delivery of the Vue 3 migration pipelines, and dramatically increasing our automated QA test coverage boundaries.
           </v-card-text>
 

@@ -4,12 +4,12 @@
       <!-- Left Column: Biography -->
       <v-col cols="12" md="12" class="pr-md-8 mb-6 mb-md-0">
         <v-card variant="elevated" elevation="2" class="pa-6 rounded-xl h-100 biography-card">
-          <v-card-title class="text-h5 font-weight-bold px-0 pt-0 pb-4 text-primary d-flex align-center">
+          <v-card-title class="text-h6 font-weight-bold px-0 pt-0 pb-4 text-primary d-flex align-center">
             <v-icon start color="primary">account_circle</v-icon> Professional Biography
           </v-card-title>
           <!-- Using a wrapper division to style all injected <p> and <strong> tags via scoped CSS -->
           <v-card-text 
-            class="px-0 text-body-1 bio-content" 
+            class="px-0 text-body-2 bio-content" 
             v-html="experienceDetails">
           </v-card-text>
         </v-card>
@@ -18,7 +18,7 @@
       <!-- Right Column: Tech Stack -->
       <v-col cols="12" md="12">
         <v-card variant="elevated" elevation="2" class="pa-6 rounded-xl h-100">
-          <v-card-title class="text-h5 font-weight-bold px-0 pt-0 pb-6 text-primary">
+          <v-card-title class="text-h6 font-weight-bold px-0 pt-0 pb-6 text-primary">
             <v-icon start color="primary">data_object</v-icon> Technical Arsenal
           </v-card-title>
           
@@ -32,7 +32,7 @@
                 md="4"
                 class="mb-6"
               >
-                <h3 class="text-subtitle-1 font-weight-bold mb-3 text-grey-darken-1 text-uppercase letter-spacing-1">
+                <h3 class="text-subtitle-2 font-weight-bold mb-3 text-grey-darken-1 text-uppercase letter-spacing-1">
                   {{ label }}
                 </h3>
                 
@@ -116,8 +116,8 @@ export default {
 <style scoped>
 /* Biography raw HTML injection styling */
 ::v-deep(.bio-content p) {
-  margin-bottom: 20px;
-  line-height: 1.8;
+  margin-bottom: 16px;
+  line-height: 1.6;
   color: inherit;
 }
 
