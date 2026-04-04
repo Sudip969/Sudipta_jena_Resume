@@ -1,7 +1,8 @@
 <template>
-  <div class="projects-container px-4">
+  <div class="projects-container px-md-4 px-2">
     <v-slide-group
       show-arrows
+      center-active
       class="projects-slide-group"
     >
       <v-slide-group-item
@@ -200,6 +201,12 @@ const projects = ref([
   width: 320px;
   height: 100%;
   display: flex;
+}
+
+@media (max-width: 600px) {
+  .project-card-wrapper {
+    width: min(300px, calc(100vw - 64px));
+  }
 }
 
 .project-glass-card {
