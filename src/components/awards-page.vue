@@ -1,75 +1,92 @@
 <template>
-  <v-container class="py-8">
+  <div class="awards-container px-4">
     <v-row justify="start">
-      <!-- Certificate 1: Employee of the Month -->
-      <v-col cols="12" sm="12" md="10" lg="8">
-        <v-card class="award-card h-100 d-flex flex-column" elevation="3">
-          
-          <!-- Safely corrected Nuxt 3 static /images/ path -->
-          <v-img 
-            :src="`${config.app.baseURL}images/Sudipta employee of the month.png`" 
-            class="bg-grey-lighten-2 border-b"
-          >
-            <!-- Fallback for image loading state -->
-            <template v-slot:placeholder>
-              <v-row class="fill-height ma-0" align="center" justify="center">
-                <v-progress-circular indeterminate color="primary"></v-progress-circular>
-              </v-row>
-            </template>
-          </v-img>
+      <v-col cols="12" md="8" lg="7">
+        <v-card class="award-glass-card" border elevation="0">
+          <div class="award-image-wrapper">
+            <v-img
+              :src="`${config.app.baseURL}images/Sudipta employee of the month.png`"
+              cover
+              class="award-image"
+            >
+              <template v-slot:placeholder>
+                <div class="d-flex align-center justify-center fill-height bg-grey-lighten-4">
+                  <v-progress-circular indeterminate color="primary" />
+                </div>
+              </template>
+            </v-img>
+          </div>
 
-          <v-card-item class="pt-5">
-            <v-card-title class="text-subtitle-1 font-weight-bold mb-1">Employee of the Month</v-card-title>
-            <v-card-subtitle class="text-primary font-weight-medium d-flex align-center">
-              <v-icon start size="small">emoji_events</v-icon>
+          <v-card-item class="pa-6">
+            <div class="d-flex align-center mb-2">
+              <v-icon icon="emoji_events" color="amber-darken-2" class="mr-2" />
+              <v-card-title class="text-h6 font-weight-bold pa-0">Employee of the Month</v-card-title>
+            </div>
+            <v-card-subtitle class="text-primary font-weight-bold mb-4">
               Argusoft India
             </v-card-subtitle>
-          </v-card-item>
+            
+            <p class="text-body-2 text-grey-darken-2 mb-6 line-height-relaxed">
+              Recognized for exceptional commitment to engineering excellence, rapid delivery of the Vue 3 migration pipelines, and dramatically increasing automated QA test coverage boundaries.
+            </p>
 
-          <v-card-text class="flex-grow-1 text-body-2 mt-2">
-            Recognized for exceptional commitment to engineering excellence, rapid delivery of the Vue 3 migration pipelines, and dramatically increasing our automated QA test coverage boundaries.
-          </v-card-text>
-
-          <v-divider></v-divider>
-
-          <v-card-actions class="pa-4 bg-surface-variant">
             <v-btn
-              variant="elevated"
+              block
               color="primary"
+              variant="elevated"
               href="https://drive.google.com/file/d/18T2q5sMfOzDvkWQMqKUoR5A16hshTSe7/view"
               target="_blank"
-              prepend-icon="open_in_new"
-              class="text-none flex-grow-1 font-weight-bold"
+              prepend-icon="workspace_premium"
+              class="rounded-xl font-weight-bold text-none py-3"
             >
-              View Certificate
+              Verify Certificate
             </v-btn>
-          </v-card-actions>
+          </v-card-item>
         </v-card>
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
-<script>
-export default {
-  name: "AwardsPage",
-  data() {
-    return {
-      config: useRuntimeConfig(),
-    };
-  },
-};
+<script setup>
+const config = useRuntimeConfig();
 </script>
 
 <style scoped>
-.award-card {
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  border-radius: 12px;
+.award-glass-card {
+  background: rgba(var(--v-theme-primary), 0.02) !important;
+  border-radius: 24px !important;
+  border: 1px solid rgba(var(--v-theme-primary), 0.05) !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
 }
 
-.award-card:hover {
+.award-glass-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15) !important;
+  background: rgba(var(--v-theme-primary), 0.04) !important;
+  border-color: rgba(var(--v-theme-primary), 0.2) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08) !important;
+}
+
+.dark-mode .award-glass-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+.award-image-wrapper {
+  overflow: hidden;
+  border-bottom: 1px solid rgba(var(--v-theme-primary), 0.05);
+}
+
+.award-image {
+  max-height: 400px;
+  transition: transform 0.6s ease;
+}
+
+.award-glass-card:hover .award-image {
+  transform: scale(1.03);
+}
+
+.line-height-relaxed {
+  line-height: 1.7;
 }
 </style>

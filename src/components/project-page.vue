@@ -1,251 +1,304 @@
 <template>
-  <v-container class="py-8">
-    <v-row>
-      <v-col 
-        v-for="(project, index) in projects" 
+  <div class="projects-container px-4">
+    <v-slide-group
+      show-arrows
+      class="projects-slide-group"
+    >
+      <v-slide-group-item
+        v-for="(project, index) in projects"
         :key="index"
-        cols="12" 
-        sm="6" 
-        md="4"
-        lg="3"
-        class="mb-6"
       >
-        <v-card class="project-card h-100 d-flex flex-column" elevation="2">
-          <v-img 
-            :src="project.image" 
-            height="160" 
-            cover 
-            class="bg-grey-lighten-2 position-relative"
-          >
-            <!-- Deployment Status Badges -->
-            <div class="status-badge-container d-flex flex-column align-end">
+        <div class="project-card-wrapper ma-2">
+          <v-card class="project-glass-card h-100 d-flex flex-column" border elevation="0">
+            <!-- Project Image with Overlays -->
+            <div class="project-image-wrapper">
+              <v-img
+                :src="project.image"
+                height="200"
+                cover
+                class="project-image"
+              >
+                <template v-slot:placeholder>
+                  <div class="d-flex align-center justify-center fill-height bg-grey-lighten-4">
+                    <v-progress-circular indeterminate color="primary" />
+                  </div>
+                </template>
+              </v-img>
+              
+              <!-- Category Badge -->
               <v-chip
-                v-for="(status, sIdx) in project.statuses"
-                :key="sIdx"
                 size="x-small"
-                :color="status.color"
+                class="category-badge font-weight-bold"
+                :color="project.subtitleClass.replace('text-', '')"
                 variant="flat"
-                class="status-badge font-weight-bold mb-1"
-                elevation="4"
               >
-                {{ status.label }}
+                {{ project.subtitle }}
               </v-chip>
+
+              <!-- Status Badges -->
+              <div class="status-container">
+                <v-chip
+                  v-for="(status, sIdx) in project.statuses"
+                  :key="sIdx"
+                  size="x-small"
+                  :color="status.color"
+                  variant="flat"
+                  class="status-chip mb-1"
+                >
+                  {{ status.label }}
+                </v-chip>
+              </div>
             </div>
 
-            <template v-slot:placeholder>
-              <v-row class="fill-height ma-0" align="center" justify="center">
-                <v-progress-circular indeterminate color="grey-lighten-5"></v-progress-circular>
-              </v-row>
-            </template>
-          </v-img>
-
-          <v-card-item class="pt-3 pb-1">
-            <v-card-title class="text-subtitle-1 font-weight-bold mb-0">{{ project.title }}</v-card-title>
-            <v-card-subtitle 
-              class="text-caption font-weight-medium" 
-              :class="project.subtitleClass"
-            >
-              {{ project.subtitle }}
-            </v-card-subtitle>
-          </v-card-item>
-
-          <v-card-text class="flex-grow-1 text-caption py-2 line-height-tight">
-            <template v-if="!project.expanded">
-              {{ truncateText(project.description, 80) }}
-            </template>
-            <template v-else>
-              {{ project.description }}
-            </template>
-            
-            <a 
-              v-if="project.description.length > 80"
-              href="javascript:void(0)" 
-              class="text-primary font-weight-bold ml-1 text-decoration-none more-btn"
-              @click="project.expanded = !project.expanded"
-            >
-              {{ project.expanded ? 'Less' : 'More...' }}
-            </a>
-          </v-card-text>
-
-          <v-card-text class="pt-0 pb-2">
-            <div class="d-flex flex-wrap gap-1">
-              <v-chip 
-                v-for="(tech, i) in project.technologies" 
-                :key="i"
-                size="x-small" 
-                :color="tech.color" 
-                variant="tonal" 
-                class="tech-chip mr-1 mb-1"
+            <v-card-item class="pt-4 pb-0">
+              <v-card-title class="text-h6 font-weight-bold mb-1">{{ project.title }}</v-card-title>
+              <div 
+                class="text-caption text-grey-darken-1 mb-1 transition-all"
+                :class="{ 'line-clamp-2': !project.expanded }"
               >
-                {{ tech.name }}
-              </v-chip>
-            </div>
-          </v-card-text>
+                {{ project.description }}
+              </div>
+              <v-btn
+                v-if="project.description.length > 80"
+                variant="text"
+                density="compact"
+                color="primary"
+                class="text-none px-0 mb-4 font-weight-bold show-more-btn"
+                size="x-small"
+                @click="project.expanded = !project.expanded"
+              >
+                {{ project.expanded ? 'Show Less' : 'Read More...' }}
+              </v-btn>
+              <div v-else class="mb-4"></div>
+            </v-card-item>
 
-          <v-divider></v-divider>
+            <v-card-text class="mt-auto pt-0">
+              <div class="d-flex flex-wrap ga-2 mb-4">
+                <v-chip
+                  v-for="(tech, i) in project.technologies"
+                  :key="i"
+                  size="x-small"
+                  :color="tech.color"
+                  variant="tonal"
+                  class="tech-tag"
+                >
+                  {{ tech.name }}
+                </v-chip>
+              </div>
+            </v-card-text>
 
-          <v-card-actions class="pa-2 bg-surface-variant">
-            <v-btn
-              variant="elevated"
-              :color="project.btnColor"
-              :href="project.link"
-              :target="project.link?.startsWith('http') ? '_blank' : ''"
-              :to="project.link?.startsWith('/') ? project.link : ''"
-              :disabled="project.disabled"
-              prepend-icon="open_in_new"
-              size="small"
-              class="text-none flex-grow-1"
-            >
-              {{ project.btnText }}
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+            <v-divider opacity="0.1" />
+
+            <v-card-actions class="pa-4 ga-2">
+              <v-btn
+                block
+                :variant="project.disabled ? 'tonal' : 'elevated'"
+                :color="project.btnColor"
+                :href="project.link"
+                :target="project.link?.startsWith('http') ? '_blank' : ''"
+                :disabled="project.disabled"
+                class="text-none font-weight-bold rounded-lg"
+                :prepend-icon="project.disabled ? 'check_circle' : 'open_in_new'"
+              >
+                {{ project.btnText }}
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </div>
+      </v-slide-group-item>
+    </v-slide-group>
+  </div>
 </template>
 
-<script>
-export default {
-  name: 'ProjectPage',
-  data() {
-    return {
-      projects: [
-        {
-          title: 'Referral Bridge',
-          subtitle: 'Employee Referral Ecosystem',
-          subtitleClass: 'text-deep-orange',
-          statuses: [
-            { label: 'To be Deployed', color: 'amber-darken-1' }
-          ],
-          image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80',
-          description: 'A comprehensive platform designed to streamline employee referrals. Features a high-speed candidate onboarding system, secure resume upload and view, and a robust status tracking dashboard.',
-          technologies: [
-            { name: 'Nuxt 4', color: 'primary' },
-            { name: 'Vuetify 4', color: 'indigo' },
-            { name: 'Node.js', color: 'green-darken-2' },
-            { name: 'SQLite', color: 'cyan' },
-            { name: 'JWT', color: 'amber-darken-2' }
-          ],
-          link: 'https://github.com/Sudip969/Referral-Bridge',
-          btnText: 'View Source',
-          btnColor: 'deep-orange',
-          expanded: false
-        },
-        {
-          title: 'AI Job Tracker',
-          subtitle: 'Full-Stack AI Application',
-          subtitleClass: 'text-primary',
-          statuses: [
-            { label: 'Not Deployed Yet', color: 'grey-darken-1' }
-          ],
-          image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
-          description: 'An intelligent Kanban board featuring a Gemini-powered Resume Analyzer. Features fluid Drag-and-Drop UX, complex Vuex state management, and a robust Node.js API with a Prisma ORM backend.',
-          technologies: [
-            { name: 'Nuxt 3', color: 'primary' },
-            { name: 'Vuex', color: 'success' },
-            { name: 'Node.js', color: 'blue-darken-2' },
-            { name: 'Generative AI', color: 'deep-purple-accent-2' }
-          ],
-          link: 'https://github.com/Sudip969/AI-job-tracker/tree/master',
-          btnText: 'View Source',
-          btnColor: 'primary',
-          expanded: false
-        },
-        {
-          title: 'Weather Dashboard',
-          subtitle: 'Data Visualization API',
-          subtitleClass: 'text-info',
-          statuses: [
-            { label: 'Server Not Deployed', color: 'grey-darken-1' }
-          ],
-          image: 'https://images.unsplash.com/photo-1592210454359-9043f067919b?auto=format&fit=crop&w=800&q=80',
-          description: 'A sleek, modern meteorological dashboard providing real-time data metrics, environmental forecasting, and a dynamically adapting UI based on real-world local atmospheric statuses.',
-          technologies: [
-            { name: 'Vue.js', color: 'primary' },
-            { name: 'REST API', color: 'orange-darken-2' },
-            { name: 'SCSS', color: 'pink' }
-          ],
-          link: '/weather-app',
-          btnText: 'Live Demo',
-          btnColor: 'info',
-          expanded: false
-        },
-        {
-          title: 'Digital Resume',
-          subtitle: 'Personal Web Identity',
-          subtitleClass: 'text-success',
-          statuses: [
-            { label: 'Live', color: 'success' }
-          ],
-          image: 'https://images.unsplash.com/photo-1618477388954-7852f32655ec?auto=format&fit=crop&w=800&q=80',
-          description: 'The very website you are actively browsing! Engineered using Server Side Rendering frameworks to ensure lightning-fast SEO optimization and fully responsive, fluid layouts.',
-          technologies: [
-            { name: 'Nuxt Router', color: 'primary' },
-            { name: 'Vuetify 3', color: 'indigo' },
-            { name: 'SSR', color: 'teal' }
-          ],
-          link: null,
-          btnText: 'You Are Here',
-          btnColor: 'success',
-          disabled: true,
-          expanded: false
-        }
-      ]
-    };
+<script setup>
+const projects = ref([
+  {
+    title: 'Referral Bridge',
+    subtitle: 'Full-Stack Ecosystem',
+    subtitleClass: 'text-deep-orange',
+    statuses: [{ label: 'Pending Deployment', color: 'amber-darken-1' }],
+    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80',
+    description: 'A comprehensive platform designed to streamline employee referrals. Features high-speed candidate onboarding, secure resume management, and a robust status tracking dashboard.',
+    technologies: [
+      { name: 'Vue.js', color: 'primary' },
+      { name: 'Vuetify 3', color: 'indigo' },
+      { name: 'REST API', color: 'orange' },
+      { name: 'Nuxt 4', color: 'primary' },
+      { name: 'Node.js', color: 'green' },
+      { name: 'PostgreSQL', color: 'cyan' },
+    ],
+    link: 'https://github.com/Sudip969/Referral-Bridge',
+    btnText: 'Explore Code',
+    btnColor: 'primary',
+    disabled: false,
+    expanded: false
   },
-  methods: {
-    truncateText(text, length) {
-      if (!text) return '';
-      if (text.length <= length) return text;
-      return text.substring(0, length);
-    }
+  {
+    title: 'AI Job Tracker',
+    subtitle: 'AI & Data Visualization',
+    subtitleClass: 'text-indigo',
+    statuses: [{ label: 'Beta', color: 'indigo' }],
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+    description: 'Intelligent Kanban board with Gemini-powered Resume Analyzer. Features fluid Drag-and-Drop UX and complex state management.',
+    technologies: [
+      { name: 'Vue.js', color: 'primary' },
+      { name: 'Vuetify 3', color: 'indigo' },
+      { name: 'REST API', color: 'orange' },
+      { name: 'Nuxt 3', color: 'primary' },
+      { name: 'Gemini AI', color: 'purple' },
+      { name: 'Prisma', color: 'blue' },
+    ],
+    link: 'https://github.com/Sudip969/AI-job-tracker',
+    btnText: 'View Source',
+    btnColor: 'primary',
+    disabled: false,
+    expanded: false
+  },
+  {
+    title: 'Visual Weather',
+    subtitle: 'Responsive Web App',
+    subtitleClass: 'text-info',
+    statuses: [{ label: 'Under Maintenance', color: 'grey-darken-1' }],
+    image: 'https://images.unsplash.com/photo-1592210454359-9043f067919b?auto=format&fit=crop&w=800&q=80',
+    description: 'Meteorological dashboard provideing real-time weather metrics with a dynamically adapting UI based on local atmospheric statuses.',
+    technologies: [
+      { name: 'Vue.js', color: 'primary' },
+      { name: 'Vuetify 3', color: 'indigo' },
+      { name: 'REST API', color: 'orange' },
+      { name: 'Sass', color: 'pink' },
+      { name: 'Nuxt 4', color: 'teal' },
+    ],
+    link: 'https://github.com/Sudip969/Sudipta_jena_Resume/tree/master/src/components/weather-app',
+    btnText: 'Live Demo',
+    btnColor: 'info',
+    disabled: false,
+    expanded: false
+  },
+  {
+    title: 'Digital Resume',
+    subtitle: 'Modern Portfolio',
+    subtitleClass: 'text-success',
+    statuses: [{ label: 'Live', color: 'success' }],
+    image: 'https://images.unsplash.com/photo-1618477388954-7852f32655ec?auto=format&fit=crop&w=800&q=80',
+    description: 'The very website you are browsing! Engineered for speed, SEO, and polished UI with heavy emphasis on modern design trends.',
+    technologies: [
+      { name: 'Vue.js', color: 'primary' },
+      { name: 'Vuetify 3', color: 'indigo' },
+      { name: 'Nuxt 4', color: 'teal' },
+    ],
+    link: null,
+    btnText: 'You Are Here',
+    btnColor: 'success',
+    disabled: true,
+    expanded: false
   }
-};
+]);
 </script>
 
 <style scoped>
-.project-card {
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  border-radius: 8px;
+.project-card-wrapper {
+  width: 320px;
+  height: 100%;
+  display: flex;
 }
 
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+.project-glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 244, 255, 0.8) 100%) !important;
+  backdrop-filter: blur(var(--glass-blur)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-radius: 20px !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
 }
 
-.status-badge-container {
+.dark-mode .project-glass-card {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+.project-glass-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary-accent) !important;
+  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15) !important;
+}
+
+.dark-mode .project-glass-card:hover {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(99, 102, 241, 0.2) !important;
+}
+
+.project-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  margin: 12px;
+}
+
+.project-image {
+  transition: transform 0.6s ease;
+}
+
+.project-glass-card:hover .project-image {
+  transform: scale(1.1);
+}
+
+.category-badge {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 10;
+  top: 12px;
+  left: 12px;
+  z-index: 2;
+  backdrop-filter: blur(4px);
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.dark-mode .category-badge {
+  background: rgba(0, 0, 0, 0.7) !important;
+}
+
+.status-container {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
-.status-badge {
-  opacity: 0.95;
+.status-chip {
   font-size: 0.6rem !important;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
   height: 20px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.tech-chip {
-  font-weight: 500;
-  letter-spacing: 0.1px;
-  font-size: 0.65rem !important;
+.tech-tag {
+  font-weight: 600;
+  letter-spacing: 0.2px;
 }
 
-.line-height-tight {
-  line-height: 1.35;
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.more-btn {
-  font-size: 0.75rem;
-  cursor: pointer;
+.transition-all {
+  transition: all 0.3s ease;
 }
+
+.show-more-btn {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.show-more-btn:hover {
+  opacity: 1;
+}
+
+.ga-2 { gap: 0.5rem; }
 </style>
-

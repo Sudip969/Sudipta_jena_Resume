@@ -8,10 +8,14 @@
           :key="index"
           :value="index"
           v-bind="tab.to ? { to: tab.to } : {}"
+          class="px-2 px-sm-4"
         >
-          <span class="text-capitalize">
-            {{ tab.title }}
-          </span>
+          <div class="d-flex align-center Ga-2">
+            <v-icon v-if="tab.icon" :icon="tab.icon" size="small" class="mr-1 mr-sm-2" />
+            <span class="text-capitalize font-weight-medium">
+              {{ tab.title }}
+            </span>
+          </div>
         </v-tab>
       </v-tabs>
     </v-col>

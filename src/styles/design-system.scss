@@ -1,0 +1,95 @@
+// design-system.scss
+
+:root {
+  --font-main: 'Inter', sans-serif;
+  --font-heading: 'Outfit', sans-serif;
+  
+  // Glassmorphism Variables
+  --glass-bg-light: rgba(255, 255, 255, 0.7);
+  --glass-bg-dark: rgba(20, 20, 30, 0.7);
+  --glass-border-light: rgba(255, 255, 255, 0.4);
+  --glass-border-dark: rgba(255, 255, 255, 0.1);
+  --glass-blur: 12px;
+  
+  // High-end Accent Colors
+  --primary-accent: #6366f1; // Indigo
+  --secondary-accent: #f59e0b; // Gold
+  --text-dark: #1e293b;
+  --text-light: #f8fafc;
+}
+
+body {
+  font-family: var(--font-main);
+  background: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+              radial-gradient(at 100% 0%, rgba(245, 158, 11, 0.1) 0px, transparent 50%),
+              radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
+              radial-gradient(at 0% 100%, rgba(245, 158, 11, 0.15) 0px, transparent 50%),
+              #f8fafc;
+  transition: background 0.5s ease-in-out;
+  min-height: 100vh;
+  margin: 0;
+}
+
+body.dark-mode {
+  background: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.2) 0px, transparent 50%),
+              radial-gradient(at 100% 0%, rgba(30, 41, 59, 0.5) 0px, transparent 50%),
+              radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.7) 0px, transparent 50%),
+              #020617;
+  color: var(--text-light);
+}
+
+.v-application {
+  background: transparent !important;
+}
+
+// Glassmorphism Utility
+.glass-card {
+  background: var(--glass-bg-light) !important;
+  backdrop-filter: blur(var(--glass-blur)) !important;
+  border: 1px solid var(--glass-border-light) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07) !important;
+  transition: all 0.3s ease !important;
+}
+
+.dark-mode .glass-card {
+  background: var(--glass-bg-dark) !important;
+  border: 1px solid var(--glass-border-dark) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
+}
+
+.v-card-title {
+  font-family: var(--font-heading) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined' !important;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+.text-primary {
+  color: var(--primary-accent) !important;
+}
+
+// Custom Scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-accent);
+  border-radius: 10px;
+  opacity: 0.5;
+}
