@@ -1,113 +1,111 @@
 <template>
-  <div class="projects-container px-md-4 px-2">
-    <v-slide-group
-      show-arrows
-      center-active
-      class="projects-slide-group"
-    >
-      <v-slide-group-item
+  <div class="projects-container px-md-3 px-2">
+    <v-row class="projects-grid">
+      <v-col
         v-for="(project, index) in projects"
         :key="index"
+        cols="12"
+        sm="6"
+        md="3"
+        class="d-flex"
       >
-        <div class="project-card-wrapper ma-2">
-          <v-card class="project-glass-card h-100 d-flex flex-column" border elevation="0">
-            <!-- Project Image with Overlays -->
-            <div class="project-image-wrapper">
-              <v-img
-                :src="project.image"
-                height="200"
-                cover
-                class="project-image"
-              >
-                <template v-slot:placeholder>
-                  <div class="d-flex align-center justify-center fill-height bg-grey-lighten-4">
-                    <v-progress-circular indeterminate color="primary" />
-                  </div>
-                </template>
-              </v-img>
-              
-              <!-- Category Badge -->
+        <v-card class="project-glass-card h-100 d-flex flex-column" border elevation="0">
+          <!-- Project Image with Overlays -->
+          <div class="project-image-wrapper">
+            <v-img
+              :src="project.image"
+              height="200"
+              cover
+              class="project-image"
+            >
+              <template v-slot:placeholder>
+                <div class="d-flex align-center justify-center fill-height bg-grey-lighten-4">
+                  <v-progress-circular indeterminate color="primary" />
+                </div>
+              </template>
+            </v-img>
+            
+            <!-- Category Badge -->
+            <v-chip
+              size="x-small"
+              class="category-badge font-weight-bold"
+              :color="project.subtitleClass.replace('text-', '')"
+              variant="flat"
+            >
+              {{ project.subtitle }}
+            </v-chip>
+
+            <!-- Status Badges -->
+            <div class="status-container">
               <v-chip
+                v-for="(status, sIdx) in project.statuses"
+                :key="sIdx"
                 size="x-small"
-                class="category-badge font-weight-bold"
-                :color="project.subtitleClass.replace('text-', '')"
+                :color="status.color"
                 variant="flat"
+                class="status-chip mb-1"
               >
-                {{ project.subtitle }}
+                {{ status.label }}
               </v-chip>
-
-              <!-- Status Badges -->
-              <div class="status-container">
-                <v-chip
-                  v-for="(status, sIdx) in project.statuses"
-                  :key="sIdx"
-                  size="x-small"
-                  :color="status.color"
-                  variant="flat"
-                  class="status-chip mb-1"
-                >
-                  {{ status.label }}
-                </v-chip>
-              </div>
             </div>
+          </div>
 
-            <v-card-item class="pt-4 pb-0">
-              <v-card-title class="text-h6 font-weight-bold mb-1">{{ project.title }}</v-card-title>
-              <div 
-                class="text-caption text-grey-darken-1 mb-1 transition-all"
-                :class="{ 'line-clamp-2': !project.expanded }"
-              >
-                {{ project.description }}
-              </div>
-              <v-btn
-                v-if="project.description.length > 80"
-                variant="text"
-                density="compact"
-                color="primary"
-                class="text-none px-0 mb-4 font-weight-bold show-more-btn"
+          <v-card-item class="pt-4 pb-0">
+            <v-card-title class="text-h6 font-weight-bold mb-1">{{ project.title }}</v-card-title>
+            <div 
+              class="text-caption text-grey-darken-1 mb-1 transition-all"
+              :class="{ 'line-clamp-2': !project.expanded }"
+            >
+              {{ project.description }}
+            </div>
+            <v-btn
+              v-if="project.description.length > 80"
+              variant="text"
+              density="compact"
+              color="primary"
+              class="text-none px-0 mb-4 font-weight-bold show-more-btn"
+              size="x-small"
+              @click="project.expanded = !project.expanded"
+            >
+              {{ project.expanded ? 'Show Less' : 'Read More...' }}
+            </v-btn>
+            <div v-else class="mb-4"></div>
+          </v-card-item>
+
+          <v-card-text class="mt-auto pt-0">
+            <div class="d-flex flex-wrap ga-2 mb-4">
+              <v-chip
+                v-for="(tech, i) in project.technologies"
+                :key="i"
                 size="x-small"
-                @click="project.expanded = !project.expanded"
+                :color="tech.color"
+                variant="tonal"
+                class="tech-tag"
               >
-                {{ project.expanded ? 'Show Less' : 'Read More...' }}
-              </v-btn>
-              <div v-else class="mb-4"></div>
-            </v-card-item>
+                {{ tech.name }}
+              </v-chip>
+            </div>
+          </v-card-text>
 
-            <v-card-text class="mt-auto pt-0">
-              <div class="d-flex flex-wrap ga-2 mb-4">
-                <v-chip
-                  v-for="(tech, i) in project.technologies"
-                  :key="i"
-                  size="x-small"
-                  :color="tech.color"
-                  variant="tonal"
-                  class="tech-tag"
-                >
-                  {{ tech.name }}
-                </v-chip>
-              </div>
-            </v-card-text>
+          <v-divider opacity="0.1" />
 
-            <v-divider opacity="0.1" />
-
-            <v-card-actions class="pa-4 ga-2">
-              <v-btn
-                block
-                :variant="project.disabled ? 'tonal' : 'elevated'"
-                :color="project.btnColor"
-                :href="project.link"
-                :target="project.link?.startsWith('http') ? '_blank' : ''"
-                :disabled="project.disabled"
-                class="text-none font-weight-bold rounded-lg"
-                :prepend-icon="project.disabled ? 'check_circle' : 'open_in_new'"
-              >
-                {{ project.btnText }}
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </div>
-      </v-slide-group-item>
-    </v-slide-group>
+          <v-card-actions class="pa-4 ga-2">
+            <v-btn
+              block
+              :variant="project.disabled ? 'tonal' : 'elevated'"
+              :color="project.btnColor"
+              :href="project.link"
+              :target="project.link?.startsWith('http') ? '_blank' : ''"
+              :disabled="project.disabled"
+              class="text-none font-weight-bold rounded-lg"
+              :prepend-icon="project.disabled ? 'check_circle' : 'open_in_new'"
+            >
+              {{ project.btnText }}
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
@@ -197,17 +195,10 @@ const projects = ref([
 </script>
 
 <style scoped>
-.project-card-wrapper {
-  width: 320px;
-  height: 100%;
-  display: flex;
+.projects-grid {
+  margin-top: 1rem;
 }
 
-@media (max-width: 600px) {
-  .project-card-wrapper {
-    width: min(300px, calc(100vw - 64px));
-  }
-}
 
 .project-glass-card {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 244, 255, 0.8) 100%) !important;
@@ -266,7 +257,7 @@ const projects = ref([
 
 .status-container {
   position: absolute;
-  top: 12px;
+  bottom: 12px;
   right: 12px;
   z-index: 2;
   display: flex;

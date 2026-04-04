@@ -1,1 +1,0 @@
-import{_ as a,x as n,y as r,B as s,ab as o,C as l,D as c,X as u,J as d}from"./BT5jTxnR.js";const f={};function _(t,e){return r(),n(d,null,[s(u,null,{default:l(()=>e[0]||(e[0]=[c(" LP Layout ")])),_:1}),o(t.$slots,"default")],64)}const m=a(f,[["render",_]]);export{m as default};
