@@ -1,0 +1,1 @@
+import{_ as a,x as r,y as s,B as n,a9 as o,C as l,D as c,X as d,J as f}from"./BwhcgRTW.js";const p={};function u(t,e){return s(),r(f,null,[n(d,null,{default:l(()=>e[0]||(e[0]=[c(" Weather App Layout ")])),_:1}),o(t.$slots,"default")],64)}const m=a(p,[["render",u]]);export{m as default};

@@ -115,7 +115,7 @@ const projects = ref([
     title: 'Referral Bridge',
     subtitle: 'Full-Stack Ecosystem',
     subtitleClass: 'text-deep-orange',
-    statuses: [{ label: 'Pending Deployment', color: 'amber-darken-1' }],
+    statuses: [{ label: 'Live', color: 'amber-darken-1' }],
     image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80',
     description: 'A comprehensive platform designed to streamline employee referrals. Features high-speed candidate onboarding, secure resume management, and a robust status tracking dashboard.',
     technologies: [
@@ -126,9 +126,9 @@ const projects = ref([
       { name: 'Node.js', color: 'green' },
       { name: 'PostgreSQL', color: 'cyan' },
     ],
-    link: 'https://github.com/Sudip969/Referral-Bridge',
-    btnText: 'Explore Code',
-    btnColor: 'primary',
+    link: 'https://referral-bridge-six.vercel.app',
+    btnText: 'Live',
+    btnColor: 'info',
     disabled: false,
     expanded: false
   },
